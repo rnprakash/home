@@ -11,3 +11,5 @@ nnoremap <space> :noh<return><space>
 map <Up> gk
 map <Down> gj
 se formatoptions+=r
+se breakindent
+syntax on

@@ -70,4 +70,5 @@ main = do
          , ((mod1Mask .|. shiftMask, xK_j), windowSwap D False)
          , ((mod1Mask .|. shiftMask, xK_k), windowSwap U False)
          , ((mod1Mask, xK_p), spawn "dmenu_run")
+         , ((mod4Mask, xK_l), spawn "slock")
         ]

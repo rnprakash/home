@@ -48,7 +48,7 @@ import XMonad.Hooks.SetWMName
 
 
 main = do
-    xmproc <- spawnPipe "/usr/bin/xmobar /home/rprakash/.xmobarrc"
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/rohith/.xmobarrc"
     xmonad $ defaultConfig {
         manageHook = manageDocks <+> manageHook defaultConfig,
         layoutHook = avoidStruts  $  layoutHook defaultConfig

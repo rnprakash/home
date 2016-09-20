@@ -1,4 +1,5 @@
 au BufRead,BufNewFile *.tex set textwidth=80
+au BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 colorscheme desert
 se expandtab
 se shiftwidth=4

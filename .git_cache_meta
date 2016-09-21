@@ -1,0 +1,28 @@
+chown 1001 .vimrc
+chgrp 1001 .vimrc
+touch -c -d "2016-09-21 11:57:11.2088916910" .vimrc
+chmod 0775 .vimrc
+chown 1001 .xmobarrc
+chgrp 1001 .xmobarrc
+touch -c -d "2016-09-19 12:16:19.4544277890" .xmobarrc
+chmod 0664 .xmobarrc
+chown 1001 .xmonad/xmonad-x86_64-linux
+chgrp 1001 .xmonad/xmonad-x86_64-linux
+touch -c -d "2016-09-19 12:16:19.4544277890" .xmonad/xmonad-x86_64-linux
+chmod 0775 .xmonad/xmonad-x86_64-linux
+chown 1001 .xmonad/xmonad.errors
+chgrp 1001 .xmonad/xmonad.errors
+touch -c -d "2016-09-19 12:16:19.4544277890" .xmonad/xmonad.errors
+chmod 0664 .xmonad/xmonad.errors
+chown 1001 .xmonad/xmonad.hi
+chgrp 1001 .xmonad/xmonad.hi
+touch -c -d "2016-09-19 12:16:19.4544277890" .xmonad/xmonad.hi
+chmod 0664 .xmonad/xmonad.hi
+chown 1001 .xmonad/xmonad.hs
+chgrp 1001 .xmonad/xmonad.hs
+touch -c -d "2016-09-19 12:16:52.6114442940" .xmonad/xmonad.hs
+chmod 0664 .xmonad/xmonad.hs
+chown 1001 .xmonad/xmonad.o
+chgrp 1001 .xmonad/xmonad.o
+touch -c -d "2016-09-19 12:16:19.4544277890" .xmonad/xmonad.o
+chmod 0664 .xmonad/xmonad.o

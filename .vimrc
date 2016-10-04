@@ -23,7 +23,6 @@ set ai
 set smarttab
 set smartindent
 set expandtab
-"colorscheme ron
 syntax on
 set number
 se nojoinspaces
@@ -38,10 +37,21 @@ set ruler
 set incsearch
 set backspace=2 " make backspace work like most other apps
 
-set foldmethod=indent
+" Note, perl automatically sets foldmethod in the syntax file
+autocmd Syntax c,cpp,vim,xml,html,xhtml setlocal foldmethod=syntax
+autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
 
+" Paste plain - don't auto indent or comment
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
 
-" execute pathogen#infect()
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+    set pastetoggle=<Esc>[201~
+    set paste
+    return ""
+function
 
 "autocmd vimenter * NERDTree
 autocmd vimenter * wincmd p

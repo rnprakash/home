@@ -117,3 +117,8 @@ if ! shopt -oq posix; then
 fi
 
 eval $(thefuck --alias)
+
+export qemu_env='QEMU_MEMPATH_PREFIX=/hugetlbfs/qemu LD_PRELOAD=/home/rohith/research/stackdb/.obj/target/.libs/libqemuhacks.so.0.0.0'
+export qemu_vars='-cpu host -m 2048 -enable-kvm -kernel /home/rohith/kvm/vmlinuz-3.2.0-4-amd64 -initrd /home/rohith/kvm/initrd.img-3.2.0-4-amd64 -append "root=/dev/sda1 rw console=ttyS0" -device e1000,netdev=net0 -netdev tap,id=net0 -gdb tcp:127.0.0.1:1234,nowait,nodelay,server -qmp tcp:127.0.0.1:1235,server,nowait -mem-path /hugetlbfs -hda /home/rohith/kvm/wheezy.img -redir tcp:2222::22'
+
+export TERM=xterm-256color

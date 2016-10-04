@@ -1,0 +1,10 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_1='/home/rohith/.home/.git'
+let g:netrw_dirhist_2='/home/rohith/.config/gtk-3.0'
+let g:netrw_dirhist_3='/home/rohith/.config/gtk-2.0'
+let g:netrw_dirhist_4='/home/rohith/.config/dconf'
+let g:netrw_dirhist_5='/home/rohith/.git'
+let g:netrw_dirhist_6='scp://rohith@sparkg//'
+let g:netrw_dirhist_7='scp://rohith@sparkg//home/'
+let g:netrw_dirhist_8='scp://sparkg//'

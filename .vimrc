@@ -38,8 +38,8 @@ set incsearch
 set backspace=2 " make backspace work like most other apps
 
 " Note, perl automatically sets foldmethod in the syntax file
-autocmd Syntax c,cpp,vim,xml,html,xhtml setlocal foldmethod=syntax
-autocmd Syntax c,cpp,vim,xml,html,xhtml,perl normal zR
+autocmd Filetype c,cpp,vim,xml,html,xhtml setlocal foldmethod=indent
+autocmd Filetype c,cpp,vim,xml,html,xhtml,perl normal zR
 
 " Paste plain - don't auto indent or comment
 let &t_SI .= "\<Esc>[?2004h"
@@ -51,13 +51,18 @@ function! XTermPasteBegin()
     set pastetoggle=<Esc>[201~
     set paste
     return ""
-function
+endfunction
 
 "autocmd vimenter * NERDTree
 autocmd vimenter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-au BufRead,BufNewFile *.tex set textwidth=80
+function! LatexFormat(start, end)
+    silent execute a:start.','.a:end.'s/[.!?]\zs /\r/g'
+endfunction
+
+"au BufRead,BufNewFile *.tex set textwidth=80
+au Filetype tex set formatexpr=LatexFormat(v:lnum,v:lnum+v:count-1)
 au BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
 
 syntax on

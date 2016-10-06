@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+export TERM=xterm-256color
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -119,6 +121,13 @@ fi
 eval $(thefuck --alias)
 
 export qemu_env='QEMU_MEMPATH_PREFIX=/hugetlbfs/qemu LD_PRELOAD=/home/rohith/research/stackdb/.obj/target/.libs/libqemuhacks.so.0.0.0'
-export qemu_vars='-cpu host -m 2048 -enable-kvm -kernel /home/rohith/kvm/vmlinuz-3.2.0-4-amd64 -initrd /home/rohith/kvm/initrd.img-3.2.0-4-amd64 -append "root=/dev/sda1 rw console=ttyS0" -device e1000,netdev=net0 -netdev tap,id=net0 -gdb tcp:127.0.0.1:1234,nowait,nodelay,server -qmp tcp:127.0.0.1:1235,server,nowait -mem-path /hugetlbfs -hda /home/rohith/kvm/wheezy.img -redir tcp:2222::22'
 
-export TERM=xterm-256color
+run_qemu() {
+    sudo $qemu_env qemu-system-x86_64 -cpu host -m 2048 -enable-kvm -kernel /home/rohith/kvm/vmlinuz-3.2.0-4-amd64 -initrd /home/rohith/kvm/initrd.img-3.2.0-4-amd64 -append "root=/dev/sda1 rw console=ttyS0" -device e1000,netdev=net0 -netdev tap,id=net0 -gdb tcp:127.0.0.1:1234,nowait,nodelay,server -qmp tcp:127.0.0.1:1235,server,nowait -mem-path /hugetlbfs -hda /home/rohith/kvm/wheezy.img -net user,hostfwd=tcp::10022-:22 -net nic
+}
+
+vmi() {
+    memfile=`ls -t /hugetlbfs/ | head -n1`
+    sudo $1 -t gdb --qemu --qemu-qmp-port 1235 --qemu-qmp-host 127.0.0.1 --qemu-mem-path /hugetlbfs/$memfile --kvm -M /home/rohith/kvm/vmlinux-3.2.0-4-amd64 --personality=linux --gdb-port 1234 --gdb-host 127.0.0.1 ${@:2}
+}
+

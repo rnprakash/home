@@ -1,8 +1,8 @@
-For ease of use, create a `home' alias
+For ease of use, create a `home` alias
 
     alias home='git --work-tree=$HOME --git-dir=$HOME/.home'
 
-Create a `.home' directory and initialize it
+Create a `.home` directory and initialize it
 
     cd
     mkdir -p .home && cd .home

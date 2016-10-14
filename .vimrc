@@ -62,8 +62,8 @@ function! LatexFormat(start, end)
 endfunction
 
 "au BufRead,BufNewFile *.tex set textwidth=80
-au Filetype tex set formatexpr=LatexFormat(v:lnum,v:lnum+v:count-1)
-au BufRead,BufNewFile *.txt setlocal spell spelllang=en_us
+au Filetype tex,md set formatexpr=LatexFormat(v:lnum,v:lnum+v:count-1)
+au BufRead,BufNewFile *.md,*.txt setlocal spell spelllang=en_us
 
 syntax on
 "map <C-n>n :NERDTreeToggle<CR>

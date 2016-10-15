@@ -1,20 +1,5 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'valloric/youcompleteme'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'tomasr/molokai'
-
-call vundle#end()
 filetype plugin indent on
 
 set ts=4
@@ -30,7 +15,6 @@ nnoremap <space> :noh<return><space>
 map <Up> gk
 map <Down> gj
 se formatoptions+=r
-se breakindent
 
 set history=50
 set ruler
@@ -66,22 +50,4 @@ au Filetype tex,md set formatexpr=LatexFormat(v:lnum,v:lnum+v:count-1)
 au BufRead,BufNewFile *.md,*.txt setlocal spell spelllang=en_us
 
 syntax on
-"map <C-n>n :NERDTreeToggle<CR>
-:command Files NERDTreeToggle
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:airline#extensions#tabline#enabled = 1
-
-colorscheme molokai
-let g:molokai_original = 1
-"let g:rehash256 = 1
-
-"colorscheme desert
+colorscheme desert

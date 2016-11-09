@@ -1,5 +1,5 @@
 set nocompatible
-filetype off
+"filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -29,6 +29,7 @@ se nojoinspaces
 nnoremap <space> :noh<return><space>
 map <Up> gk
 map <Down> gj
+map <S-Tab> :bn<return>
 se formatoptions+=r
 se breakindent
 
@@ -58,12 +59,13 @@ autocmd vimenter * wincmd p
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 function! LatexFormat(start, end)
+    silent execute a:start.','.a:end.'s/[\r\n]\([^\r\n]\)/ \1/g'
     silent execute a:start.','.a:end.'s/[.!?]\zs /\r/g'
 endfunction
 
 "au BufRead,BufNewFile *.tex set textwidth=80
-au Filetype tex,md set formatexpr=LatexFormat(v:lnum,v:lnum+v:count-1)
-au BufRead,BufNewFile *.md,*.txt setlocal spell spelllang=en_us
+au BufRead,BufNewFile *.tex,*.md set formatexpr=LatexFormat(v:lnum,v:lnum+v:count-1)
+au BufRead,BufNewFile *.tex,*.md,*.txt setlocal spell spelllang=en_us
 
 syntax on
 "map <C-n>n :NERDTreeToggle<CR>

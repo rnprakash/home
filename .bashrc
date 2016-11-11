@@ -122,8 +122,6 @@ alias home='git --work-tree=$HOME --git-dir=$HOME/.home'
 
 eval $(thefuck --alias)
 
-export qemu_env='QEMU_MEMPATH_PREFIX=/hugetlbfs/qemu LD_PRELOAD=/home/rohith/research/stackdb/.obj/target/.libs/libqemuhacks.so.0.0.0'
-
 mdview() {
     pandoc $* | lynx -stdin
 }

@@ -1,0 +1,10 @@
+<p>For ease of use, create a <code>home</code> alias</p>
+<pre><code>alias home=&#39;git --work-tree=$HOME --git-dir=$HOME/.home&#39;</code></pre>
+<p>Create a <code>.home</code> directory and initialize it</p>
+<pre><code>mkdir -p ~/.home &amp;&amp; cd ~/.home
+home init
+home remote add origin https://github.com/rnprakash/home.git
+home branch --set-upstream master origin/master
+home pull</code></pre>
+<p>Or</p>
+<pre><code>home fetch --all &amp;&amp; home reset --hard origin/master</code></pre>

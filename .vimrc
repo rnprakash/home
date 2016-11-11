@@ -68,7 +68,6 @@ au BufRead,BufNewFile *.tex,*.md set formatexpr=LatexFormat(v:lnum,v:lnum+v:coun
 au BufRead,BufNewFile *.tex,*.md,*.txt setlocal spell spelllang=en_us
 
 syntax on
-"map <C-n>n :NERDTreeToggle<CR>
 :command Files NERDTreeToggle
 
 set statusline+=%#warningmsg#

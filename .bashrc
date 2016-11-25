@@ -4,6 +4,8 @@
 
 export TERM=xterm-256color
 
+export EDITIR="vim"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;

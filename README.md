@@ -7,9 +7,6 @@ Create a `.home` directory and initialize it
     mkdir -p ~/.home && cd ~/.home
     home init
     home remote add origin https://github.com/rnprakash/home.git
-    home branch --set-upstream master origin/master
-    home pull
+    home fetch --all origin master && home reset --hard origin/master
+    home branch --set-upstream-to origin/master
 
-Or
-
-    home fetch --all && home reset --hard origin/master

@@ -13,6 +13,9 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tomasr/molokai'
+Plugin 'tpope/vim-pathogen'
+Plugin 'motemen/git-vim'
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
 
 call vundle#end()
 filetype plugin indent on
@@ -30,6 +33,7 @@ nnoremap <space> :noh<return><space>
 map <Up> gk
 map <Down> gj
 map <S-Tab> :bn<return>
+nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
 se formatoptions+=r
 se breakindent
 
@@ -38,15 +42,27 @@ set ruler
 set incsearch
 set backspace=2 " make backspace work like most other apps
 
+
 " Note, perl automatically sets foldmethod in the syntax file
 autocmd Filetype c,cpp,vim,xml,html,xhtml setlocal foldmethod=indent
 autocmd Filetype c,cpp,vim,xml,html,xhtml,perl normal zR
+
+autocmd BufRead,BufNewFile *.cls set syntax=tex
 
 " Paste plain - don't auto indent or comment
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! CloseWindowOrKillBuffer() "{{{
+    let num_buffers = len(filter(range(1, bufnr('$')), 'buflisted(v:val)'))
+    if num_buffers > 1
+        "bw
+        bd
+    endif
+endfunction "}}}
+
 
 function! XTermPasteBegin()
     set pastetoggle=<Esc>[201~
@@ -63,7 +79,6 @@ function! LatexFormat(start, end)
     silent execute a:start.','.a:end.'s/[.!?]\zs /\r/g'
 endfunction
 
-"au BufRead,BufNewFile *.tex set textwidth=80
 au BufRead,BufNewFile *.tex,*.md set formatexpr=LatexFormat(v:lnum,v:lnum+v:count-1)
 au BufRead,BufNewFile *.tex,*.md,*.txt setlocal spell spelllang=en_us
 
@@ -78,6 +93,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_tex_checkers=['chktex']
+
+let g:tex_flavor = "latex"
 
 let g:airline#extensions#tabline#enabled = 1
 

@@ -71,4 +71,8 @@ main = do
          , ((mod1Mask .|. shiftMask, xK_k), windowSwap U False)
          , ((mod1Mask, xK_p), spawn "dmenu_run")
          , ((mod4Mask, xK_l), spawn "slock")
+         --take a screenshot of entire display 
+         , ((mod1Mask , xK_Print ), spawn "scrot screen_%Y-%m-%d-%H-%M-%S.png -d 1")
+         --take a screenshot of focused window 
+         , ((mod1Mask .|. controlMask, xK_Print ), spawn "scrot window_%Y-%m-%d-%H-%M-%S.png -d 1-u")
         ]

@@ -97,6 +97,8 @@ let g:syntastic_tex_checkers=['chktex']
 
 let g:tex_flavor = "latex"
 
+let g:LatexBox_latexmk_preview_continuously = 1
+
 let g:airline#extensions#tabline#enabled = 1
 
 colorscheme molokai
@@ -104,3 +106,6 @@ let g:molokai_original = 1
 "let g:rehash256 = 1
 
 "colorscheme desert
+
+" for fucking tablet bullshit
+set mouse=

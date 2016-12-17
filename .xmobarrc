@@ -1,3 +1,5 @@
+-- haskell
+
 Config { font = "xft:Monospace:size=14"
        , bgColor = "black"
        , fgColor = "grey"
@@ -6,24 +8,38 @@ Config { font = "xft:Monospace:size=14"
        , hideOnStart = False
        , overrideRedirect = False
        , commands = [ Run Weather "EGPF" ["-t"," <tempF>F","-L","64","-H","77","--normal","green","--high","red","--low","lightblue"] 36000
-                    , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
+                    , Run Cpu [ "-L"        , "25"
+                              , "-H"        , "75"
+                              , "--low"     , "green"
+                              , "--normal"  , "orange"
+                              , "--high"    , "red"
+                              ] 10
+                    , Run Memory ["-t","Mem: <usedratio>%", "-L","0","-H","80","--normal","green","--high","red"] 10
                     , Run Swap [] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
-                    , Run Battery [ "--template", "Batt: <acstatus>"
-                                  , "--Low"     , "15"
-                                  , "--High"    , "80"
+                    , Run Com "/bin/bash" ["-c", "~/.bin/get-volume.sh"] "vol" 5
+                    , Run BatteryP ["BAT0"] [ "--template", "Batt: <acstatus>"
+                                  , "--Low"     , "20"
+                                  , "--High"    , "70"
                                   , "--low"     , "darkred"
                                   , "--normal"  , "darkorange"
                                   , "--high"    , "darkgreen"
                                   , "--"
-                                       , "-o"	, "<left>% (<timeleft>)"
-                                       , "-O"	, "<fc=#dAA520>Charging</fc> <left>%"
+                                       , "-O"	, "<left>% <fc=#dAA520>Charging</fc>"
+                                       , "-o"	, "<left>%"
                                        , "-i"	, "<fc=#006000>Charged</fc>"
+                                       , "-f"    , "AC0/online"
                                   ] 50
+                    , Run Wireless "wlp1s0" [ "-t", "<fc=lightblue><essid></fc> <qualityvbar><qualityvbar>"
+                                            , "-L", "30"
+                                            , "-H", "80"
+                                            , "--low"   , "darkred"
+                                            , "--normal", "darkorange"
+                                            , "--high"  , "darkgreen"
+                                            ] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% * %battery%  <fc=#ee9a00>%date%</fc> "
+       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %battery% | %vol% | %wlp1s0wi% | <fc=#ee9a00>%date%</fc> "
        }

@@ -105,6 +105,8 @@ let g:LatexBox_viewer="zathura"
 let g:tex_flavor = "latex"
 "let g:syntastic_quiet_messages = { "type": "style" }
 
+let g:LatexBox_latexmk_preview_continuously = 1
+
 let g:airline#extensions#tabline#enabled = 1
 
 colorscheme molokai
@@ -112,3 +114,6 @@ let g:molokai_original = 1
 "let g:rehash256 = 1
 
 "colorscheme desert
+
+" for fucking tablet bullshit
+set mouse=

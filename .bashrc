@@ -124,6 +124,8 @@ alias home='git --work-tree=$HOME --git-dir=$HOME/.home'
 
 eval $(thefuck --alias)
 
+export PATH=$HOME/.bin/:$PATH
+
 mdview() {
     pandoc $* | lynx -stdin
 }

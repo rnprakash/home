@@ -24,27 +24,34 @@ import XMonad.Prompt.Directory (directoryPrompt)
 import XMonad.Util.Loggers
 import XMonad.Util.NamedWindows (getName)
 import qualified XMonad.Util.ExtensibleState as XS
-import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Loggers
 import System.IO
 import XMonad.Hooks.SetWMName
+import XMonad.Actions.Volume
+import XMonad.Util.Dzen as Dzen
+import Data.Map    (fromList)
+import Data.Monoid (mappend)
+import System.Process
 
--- batteryCmd :: Logger
--- batteryCmd = logCmd $ "/usr/bin/acpi | "
---              ++ "sed -r"
---              ++" 's/.*?: (.*)/\\1/;"
---              ++" s/[dD]ischarging, [0-9]+%, ([0-9]+:[0-9]+:[0-9]+) .*/\\1-/;"
---              ++" s/[cC]harging, [0-9]+%, ([0-9]+:[0-9]+:[0-9]+) .*/\\1+/;"
---              ++" s/[cC]harged, /Charged/'"
--- 
 -- xmobarConfig :: PP
 -- xmobarConfig = xmobarPP {ppSep = " | "
 --                         , ppOrder = \(ws:lay:t:bat:_) -> [ws,lay,bat,t]
 --                         , ppExtras = [batteryCmd]
 --                         }
+
+--alert :: (Show a) => a -> X ()
+--alert = dzenConfig (timeout 1 >=> onCurr ( center 100 14 ))
+
+--alert :: (Show a) => a -> X ()
+--alert = dzenConfig centered . show 
+--centered =
+--        onCurr (center 150 66)
+--    >=> Dzen.font "-*-helvetica-*-r-*-*-64-*-*-*-*-*-*-*"
+--    >=> addArgs ["-fg", "#073642"]
+--    >=> addArgs ["-bg", "#93a1a1"] 
 
 
 main = do
@@ -75,4 +82,14 @@ main = do
          , ((mod1Mask , xK_Print ), spawn "scrot screen_%Y-%m-%d-%H-%M-%S.png -d 1")
          --take a screenshot of focused window 
          , ((mod1Mask .|. controlMask, xK_Print ), spawn "scrot window_%Y-%m-%d-%H-%M-%S.png -d 1-u")
+         --make surface pro volume keys work
+         , ((0, 0x1008ff11), do
+                                spawn "amixer -c 1 sset Master 5- -M -q" >>= return)
+         , ((0, 0x1008ff13), do
+                                spawn "amixer -c 1 sset Master 5+ -M -q"
+                                spawn "volnoti-show" >>= return)
+         , ((0, 0x1008ff12), spawn "amixer -c 1 sset Speaker toggle -q" >>= return)
+
+         , ((mod1Mask, xK_F1), spawn "xbacklight -dec 5")
+         , ((mod1Mask, xK_F2), spawn "xbacklight -inc 5")
         ]

@@ -133,3 +133,9 @@ vmi() {
     sudo $1 -t gdb --qemu --qemu-qmp-port 1235 --qemu-qmp-host 127.0.0.1 --qemu-mem-path /hugetlbfs/$memfile --kvm -M /home/rohith/kvm/vmlinux-3.2.0-4-amd64 --personality=linux --gdb-port 1234 --gdb-host 127.0.0.1 ${@:2}
 }
 
+function push () {
+   curl -s -F "token=a3JrceeE1JeURvKqYUecrigCghgpwD" \
+        -F "user=uZbdAoz1Lgh2qYq3dFGLFfBiZuank2" \
+        -F "title=Pushover Message" \
+        -F "message=$1" https://api.pushover.net/1/messages.on
+}

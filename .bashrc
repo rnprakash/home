@@ -127,3 +127,16 @@ eval $(thefuck --alias)
 mdview() {
     pandoc $* | lynx -stdin
 }
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu/
+
+function cs () {
+    cd "$@" && ls
+}
+
+function push () {
+   curl -s -F "token=a3JrceeE1JeURvKqYUecrigCghgpwD" \
+        -F "user=uZbdAoz1Lgh2qYq3dFGLFfBiZuank2" \
+        -F "title=Pushover Message" \
+        -F "message=$1" https://api.pushover.net/1/messages.on
+}

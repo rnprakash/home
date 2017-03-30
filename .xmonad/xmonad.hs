@@ -58,7 +58,7 @@ main = do
                 ppOutput = hPutStrLn xmproc
                 , ppTitle = xmobarColor "green" "" . shorten 50
             }
-        , terminal = "xterm"
+        , terminal = "gnome-terminal --hide-menubar"
         -- , modMaskI = mod4Mask    -- Rebind Mod to the Windows Key
         } `additionalKeys`
         [ ((mod1Mask, xK_l), windowGo R False)

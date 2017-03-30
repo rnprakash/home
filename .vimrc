@@ -47,6 +47,9 @@ set backspace=2 " make backspace work like most other apps
 autocmd Filetype c,cpp,vim,xml,html,xhtml setlocal foldmethod=indent
 autocmd Filetype c,cpp,vim,xml,html,xhtml,perl normal zR
 
+" Run Latexmk automatically for .tex files
+autocmd Filetype tex Latexmk
+
 autocmd BufRead,BufNewFile *.cls set syntax=tex
 
 " Paste plain - don't auto indent or comment
@@ -95,7 +98,12 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_tex_checkers=['chktex']
 
+let g:LatexBox_latexmk_preview_continuously = 1
+let g:LatexBox_quickfix=2
+let g:LatexBox_viewer="zathura"
+
 let g:tex_flavor = "latex"
+"let g:syntastic_quiet_messages = { "type": "style" }
 
 let g:airline#extensions#tabline#enabled = 1
 

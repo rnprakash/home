@@ -30,8 +30,6 @@ import XMonad.Util.EZConfig(additionalKeys)
 import XMonad.Util.Loggers
 import System.IO
 import XMonad.Hooks.SetWMName
-import XMonad.Actions.Volume
-import XMonad.Util.Dzen as Dzen
 import Data.Map    (fromList)
 import Data.Monoid (mappend)
 import System.Process

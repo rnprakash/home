@@ -18,28 +18,8 @@ Config { font = "xft:Monospace:size=14"
                     , Run Swap [] 10
                     , Run Date "%a %b %_d %l:%M" "date" 10
                     , Run StdinReader
-                    , Run Com "/bin/bash" ["-c", "~/.bin/get-volume.sh"] "vol" 5
-                    , Run BatteryP ["BAT0"] [ "--template", "Batt: <acstatus>"
-                                  , "--Low"     , "20"
-                                  , "--High"    , "70"
-                                  , "--low"     , "darkred"
-                                  , "--normal"  , "darkorange"
-                                  , "--high"    , "darkgreen"
-                                  , "--"
-                                       , "-O"	, "<left>% <fc=#dAA520>Charging</fc>"
-                                       , "-o"	, "<left>%"
-                                       , "-i"	, "<fc=#006000>Charged</fc>"
-                                       , "-f"    , "AC0/online"
-                                  ] 50
-                    , Run Wireless "wlp1s0" [ "-t", "<fc=lightblue><essid></fc> <qualityvbar><qualityvbar>"
-                                            , "-L", "30"
-                                            , "-H", "80"
-                                            , "--low"   , "darkred"
-                                            , "--normal", "darkorange"
-                                            , "--high"  , "darkgreen"
-                                            ] 10
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | %battery% | %vol% | %wlp1s0wi% | <fc=#ee9a00>%date%</fc> "
+       , template = "%StdinReader% }{ %cpu% | %memory% * %swap% | <fc=#ee9a00>%date%</fc> "
        }

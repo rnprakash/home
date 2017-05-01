@@ -61,7 +61,7 @@ main = do
         , logHook = dynamicLogWithPP xmobarPP
             {
                 ppOutput = hPutStrLn xmproc
-                , ppTitle = xmobarColor "green" "" . shorten 50
+                , ppTitle = xmobarColor "grey" "" . shorten 50
             }
         , terminal = "gnome-terminal --hide-menubar"
         -- , modMaskI = mod4Mask    -- Rebind Mod to the Windows Key

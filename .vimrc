@@ -1,5 +1,5 @@
 set nocompatible
-"filetype off
+filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -16,8 +16,11 @@ Plugin 'tomasr/molokai'
 Plugin 'tpope/vim-pathogen'
 Plugin 'motemen/git-vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'freitass/todo.txt-vim'
+Plugin 'dag/vim-fish'
 
 call vundle#end()
+syntax enable
 filetype plugin indent on
 
 set ts=4
@@ -26,7 +29,6 @@ set ai
 set smarttab
 set smartindent
 set expandtab
-syntax on
 set number
 se nojoinspaces
 nnoremap <space> :noh<return><space>
@@ -34,6 +36,7 @@ map <Up> gk
 map <Down> gj
 map <S-Tab> :bn<return>
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
+noremap <silent> R :SyntasticReset<cr>
 se formatoptions+=r
 se breakindent
 

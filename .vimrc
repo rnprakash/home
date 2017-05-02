@@ -118,5 +118,4 @@ let g:molokai_original = 1
 
 "colorscheme desert
 
-" for fucking tablet bullshit
-set mouse=
+set mouse=a

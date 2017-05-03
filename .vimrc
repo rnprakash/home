@@ -7,16 +7,16 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'valloric/youcompleteme'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'valloric/youcompleteme'
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'tomasr/molokai'
-Plugin 'tpope/vim-pathogen'
+"Plugin 'tpope/vim-pathogen'
 Plugin 'motemen/git-vim'
 Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'freitass/todo.txt-vim'
+"Plugin 'freitass/todo.txt-vim'
 Plugin 'dag/vim-fish'
 
 call vundle#end()
@@ -118,4 +118,4 @@ let g:molokai_original = 1
 
 "colorscheme desert
 
-set mouse=a
+set mouse=n

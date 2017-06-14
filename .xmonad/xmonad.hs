@@ -51,22 +51,12 @@ import System.Process
 --    >=> addArgs ["-fg", "#073642"]
 --    >=> addArgs ["-bg", "#93a1a1"] 
 
+myTerminal = "gnome-terminal --hide-menubar"
 
-main = do
-    xmproc <- spawnPipe "/usr/bin/xmobar /home/rohith/.xmobarrc"
-    xmonad $ defaultConfig {
-        manageHook = manageDocks <+> manageHook defaultConfig,
-        layoutHook = avoidStruts  $  layoutHook defaultConfig
-        , startupHook = setWMName "LG3D"
-        , logHook = dynamicLogWithPP xmobarPP
-            {
-                ppOutput = hPutStrLn xmproc
-                , ppTitle = xmobarColor "grey" "" . shorten 50
-            }
-        , terminal = "gnome-terminal --hide-menubar"
-        -- , modMaskI = mod4Mask    -- Rebind Mod to the Windows Key
-        } `additionalKeys`
-        [ ((mod1Mask, xK_l), windowGo R False)
+myWorkspaces = map show [1..9]
+
+myKeys conf@(XConfig {}) = M.fromList $
+        ([ ((mod1Mask, xK_l), windowGo R False)
          , ((mod1Mask, xK_h), windowGo L False)
          , ((mod1Mask, xK_j), windowGo D False)
          , ((mod1Mask, xK_k), windowGo U False)
@@ -91,3 +81,23 @@ main = do
          , ((mod1Mask, xK_F1), spawn "xbacklight -dec 5")
          , ((mod1Mask, xK_F2), spawn "xbacklight -inc 5")
         ]
+        ++
+        [((m .|. mod1Mask, k), windows $ f i) -- Replace 'mod1Mask' with your mod key of choice.
+         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+         , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]])
+
+
+main = do
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/rohpra01/.xmobarrc"
+    xmonad $ defaultConfig {
+        manageHook = manageDocks <+> manageHook defaultConfig
+        , layoutHook = avoidStruts  $  layoutHook defaultConfig
+        , startupHook = setWMName "LG3D"
+        , logHook = dynamicLogWithPP xmobarPP
+            {
+                ppOutput = hPutStrLn xmproc
+                , ppTitle = xmobarColor "grey" "" . shorten 50
+            }
+        , terminal = myTerminal
+        , keys = myKeys
+        }

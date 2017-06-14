@@ -1,14 +1,15 @@
 set nocompatible
-filetype off
+filetype on
 set rtp+=~/.vim/bundle/Vundle.vim
+set shell=/bin/bash
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-surround'
 "Plugin 'scrooloose/nerdcommenter'
-"Plugin 'valloric/youcompleteme'
+Plugin 'valloric/youcompleteme'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'terryma/vim-multiple-cursors'
@@ -21,13 +22,14 @@ Plugin 'dag/vim-fish'
 
 call vundle#end()
 syntax enable
+filetype off
 filetype plugin indent on
 
 set ts=4
 set sw=4
 set ai
 set smarttab
-set smartindent
+"set smartindent
 set expandtab
 set number
 se nojoinspaces
@@ -38,7 +40,7 @@ map <S-Tab> :bn<return>
 nnoremap <silent> Q :call CloseWindowOrKillBuffer()<cr>
 noremap <silent> R :SyntasticReset<cr>
 se formatoptions+=r
-se breakindent
+"se breakindent
 
 set history=50
 set ruler
@@ -95,6 +97,9 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+"let g:syntastic_cpp_compiler = 'g++'
+"let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11'
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -119,3 +124,4 @@ let g:molokai_original = 1
 "colorscheme desert
 
 set mouse=n
+"set shell=/usr/bin/fish
